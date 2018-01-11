@@ -5,16 +5,17 @@ import 'bootstrap/dist/css/bootstrap.css';
 import LoginPage from './authentication/LoginPage';
 
 import Cart from './components/cart';
-
+import NavBar from './components/Navbar'
 class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div> */}
-        <div className="App-intro">
+        <div className="container">
+        <Navbar/>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/login' component={Login}/>
+        </Switch>
           <Cart />
         </div>
         <LoginPage/>
