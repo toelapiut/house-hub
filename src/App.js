@@ -4,8 +4,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import LoginPage from './authentication/LoginPage';
 
-import Cart from './components/cart';
-import NavBar from './components/Navbar'
+import Navbar from './components/Navbar'
+import { Switch, Route } from 'react-router-dom'
+import Home from './components/Home'
+
+
 class App extends Component {
   render() {
     return (
@@ -14,11 +17,9 @@ class App extends Component {
         <Navbar/>
         <Switch>
           <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={Login}/>
+          <Route exact path='/login' component={LoginPage}/>
         </Switch>
-          <Cart />
         </div>
-        <LoginPage/>
       </div>
     );
   }
