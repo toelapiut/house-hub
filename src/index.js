@@ -12,7 +12,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 
 const StoreInstance = Store(
-  (state={}) =>state,
+  // (state={}) =>state,
   applyMiddleware(thunk)
 );
 
