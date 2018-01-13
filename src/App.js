@@ -7,7 +7,7 @@ import SignUpPage from './authentication/SignUpPage'
 import Navbar from './components/Navbar'
 import { Switch, Route } from 'react-router-dom'
 import Home from './components/Home'
-
+// import FlashMessagesList from './components/FlashMessagesList'
 
 class App extends Component {
   render() {
@@ -15,6 +15,7 @@ class App extends Component {
       <div className="App">
         <div className="container">
         <Navbar/>
+        {/* <FlashMessagesList/> */}
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/login' component={LoginPage}/>
