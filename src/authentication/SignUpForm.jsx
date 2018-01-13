@@ -15,21 +15,27 @@ class SignUpForm extends React.Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-        
+
     }
 
     onSubmit(e){
-        this.setState({errors:{},isLoading:true })
-        e.preventDefault()
-        console.log(this.state)
-        this.props.userSignupRequest(this.state).then(
-            () => {
-                this.context.router.push('/')
-            },
-            (data) => this.setState({ errors: data.response.data,isLoading:false })
-        )
+      console.log(this.state)
+      e.preventDefault()
+      this.setState({errors:{},isLoading:true })
+      this.props.userSignupRequest(this.state).then(
+        () => {
+          this.props.addFlashMessage({
+            type: 'success',
+             text: 'You signed up successfully, welcome to Hauz Hub  '
+          })
+
+          this.context.router.history.push('/')
+        },
+        (data) => this.setState({ errors: data.response.data,isLoading:false })
+      )
+
         // if (this.isValid()){
-        //     // dispach some 
+        //     // dispach some
         //     this.setState({errors:{},isLoading:true})
         //     this.props.login(this.state).then(
         //         (res)=> this.context.router.push('/'),
@@ -41,7 +47,7 @@ class SignUpForm extends React.Component{
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
     }
-    
+
     render(){
         const {errors} =this.state
         return(
@@ -49,46 +55,46 @@ class SignUpForm extends React.Component{
                 <h2>SignUp Form</h2>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">Username</label>
-                    <input 
+                    <input
                     value ={this.state.username}
                     onChange={this.onChange}
-                    type="text" 
-                    name="username" 
+                    type="text"
+                    name="username"
                     className="form-control"/>
                     {errors.username && <span className="help-block">{errors.username}</span> }
                 </div>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">Email</label>
-                    <input 
+                    <input
                     value ={this.state.email}
                     onChange={this.onChange}
-                    type="email" 
-                    name="email" 
+                    type="email"
+                    name="email"
                     className="form-control"/>
                     {errors.email && <span className="help-block">{errors.email}</span> }
-                    
+
                 </div>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">Password</label>
-                    <input 
+                    <input
                     value ={this.state.password1}
                     onChange={this.onChange}
-                    type="password" 
-                    name="password1" 
+                    type="password"
+                    name="password1"
                     className="form-control"/>
                     {errors.password1 && <span className="help-block">{errors.password1}</span> }
-                    
-                </div>            
+
+                </div>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">PasswordConfirmation</label>
-                    <input 
+                    <input
                     value ={this.state.password2}
                     onChange={this.onChange}
-                    type="password" 
-                    name="password2" 
+                    type="password"
+                    name="password2"
                     className="form-control"/>
                     {errors.password2 && <span className="help-block">{errors.password2}</span> }
-                    
+
                 </div>
 
                 <div className="form-group">
@@ -102,7 +108,8 @@ class SignUpForm extends React.Component{
 }
 
 SignUpForm.propTypes = {
-    userSignupRequest: PropTypes.func.isRequired
+    userSignupRequest: PropTypes.func.isRequired,
+    addFlashMessage: PropTypes.func.isReguired
 }
 SignUpForm.contextTypes = {
     router: PropTypes.object.isRequired
