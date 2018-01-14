@@ -8,7 +8,7 @@ class SignUpForm extends React.Component{
         this.state = {
             username: '',
             email: '',
-            password1:'',
+            password:'',
             password2:'',
             errors:{},
             isLoading: false
@@ -77,12 +77,12 @@ class SignUpForm extends React.Component{
                 <div className="form-group">
                     <label htmlFor="" className="control-label">Password</label>
                     <input
-                    value ={this.state.password1}
+                    value ={this.state.password}
                     onChange={this.onChange}
                     type="password"
-                    name="password1"
+                    name="password"
                     className="form-control"/>
-                    {errors.password1 && <span className="help-block">{errors.password1}</span> }
+                    {errors.password && <span className="help-block">{errors.password}</span> }
 
                 </div>
                 <div className="form-group">

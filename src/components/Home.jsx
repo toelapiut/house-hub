@@ -1,5 +1,5 @@
 import React from 'react'
-// import Cart from './cart';
+import Cart from './cart';
 
 export default () => {
     return (
@@ -7,7 +7,7 @@ export default () => {
           <div className="jumbotron">
             <h1>Jumbotron</h1>
           </div>
-        
+        <Cart/>
         </div>
     )
 }
