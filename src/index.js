@@ -9,6 +9,9 @@ import { createStore,applyMiddleware,compose } from 'redux'
 import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom'
 import rootReducer from './rootReducer'
+import setAuthorizationToken from './utils/setAuthorizationToken'
+import { setCurrentUser } from './actions/authActions';
+
 
 const StoreInstance = Store(
 // const StoreInstance = createStore(
@@ -20,6 +23,11 @@ const StoreInstance = Store(
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )
 );
+
+if(localStorage.jwtToken){
+  setAuthorizationToken(localStorage.jwtToken)
+  StoreInstance.dispatch(setCurrentUser(localStorage.jwtToken))
+}
 
 ReactDOM.render(
   <Provider store={StoreInstance}>
