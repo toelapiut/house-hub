@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-
 import { Provider } from 'react-redux';
 import Store from './store';
 import { createStore,applyMiddleware,compose } from 'redux'
@@ -11,7 +10,6 @@ import { BrowserRouter } from 'react-router-dom'
 import rootReducer from './rootReducer'
 import setAuthorizationToken from './utils/setAuthorizationToken'
 import { setCurrentUser } from './actions/authActions';
-
 
 const StoreInstance = Store(
 // const StoreInstance = createStore(
