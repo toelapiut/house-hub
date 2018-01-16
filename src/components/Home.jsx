@@ -1,13 +1,15 @@
-import React from 'react'
-import Cart from './cart';
+import React, { Component } from 'react';
+import Header from './Header';
+import SideBar from './SideBar';
+import Content from './Content';
 
-export default () => {
-    return (
-        <div className="container">
-          <div className="jumbotron">
-            <h1>Jumbotron</h1>
-          </div> 
-        <Cart />
-        </div>
-    )
+
+export default() => {
+  return (
+    <div>
+      <Header/>
+      <SideBar/>
+      <Content/>
+    </div>
+  )
 }
