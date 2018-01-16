@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import  { Button } from "react-bootstrap";
 class Shelf extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +20,7 @@ class Shelf extends Component {
 
   render() {
     const shelfItems = this.state.shelfItems.map((item, idx) => {
-      return <li key={idx}><button onClick={() => this.onAddItemToCart(item)}>[+]</button>{item}</li>
+      return <li key={idx}><Button onClick={() => this.onAddItemToCart(item)}>[+]</Button>{item}</li>
     });
 
     return (
