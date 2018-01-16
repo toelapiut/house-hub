@@ -1,6 +1,7 @@
 // Content.js
 
 import React, {Component} from 'react';
+import BarChart from './BarChart';
 
 export default class Content extends Component {
     render(){
@@ -17,7 +18,7 @@ export default class Content extends Component {
                                     <div className="row">
                                         <div className="col-md-8">
                                             <p className="text-center">
-                                                <strong>This is text</strong>
+                                                <BarChart/>
                                             </p>
                                         </div>
                                     </div>

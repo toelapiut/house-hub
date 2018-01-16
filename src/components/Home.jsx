@@ -4,6 +4,8 @@ import SideBar from './SideBar';
 import Content from './Content';
 
 
+
+
 export default() => {
   return (
     <div>
@@ -13,3 +15,5 @@ export default() => {
     </div>
   )
 }
+
+

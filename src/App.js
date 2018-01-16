@@ -7,17 +7,19 @@ import SignUpPage from './authentication/SignUpPage';
 import Navbar from './components/Navbar';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-// import FlashMessagesList from './components/FlashMessagesList'
+import FlashMessagesList from './components/FlashMessagesList';
+import requireAuth from './utils/requireAuth';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <FlashMessagesList/> */}
+        <FlashMessagesList/>
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/login' component={LoginPage}/>
           <Route exact path='/signup' component={SignUpPage}/>
+          <Route exact path='/another' component={requireAuth(Home)}/>
         </Switch>
       </div>
     );
