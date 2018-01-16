@@ -16,10 +16,9 @@ class App extends Component {
       <div className="App">
         <FlashMessagesList/>
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/' component={LoginPage}/>
           <Route exact path='/signup' component={SignUpPage}/>
-          <Route exact path='/another' component={requireAuth(Home)}/>
+          <Route exact path='/dashboard' component={requireAuth(Home)}/>
         </Switch>
       </div>
     );
