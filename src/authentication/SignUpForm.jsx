@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import { browserHistory } from 'react-router'
+import classnames from 'classnames'
+import validateInput from './validations/signup'
 
 class SignUpForm extends React.Component{
     constructor(props){
@@ -19,33 +20,26 @@ class SignUpForm extends React.Component{
     }
 
     onSubmit(e){
-      console.log(this.state)
-      e.preventDefault()
-      this.setState({errors:{},isLoading:true })
-      this.props.userSignupRequest(this.state).then(
-        () => {
-          this.props.addFlashMessage({
-            type: 'success',
-             text: 'You signed up successfully, welcome to Hauz Hub  '
-          })
-
-          this.context.router.history.push('/')
-        },
-        (data) => this.setState({ errors: data.response.data,isLoading:false })
-      )
-
-        // if (this.isValid()){
-        //     // dispach some
-        //     this.setState({errors:{},isLoading:true})
-        //     this.props.login(this.state).then(
-        //         (res)=> this.context.router.push('/'),
-        //         (err) => this.setState({errors:err.data.errors,isLoading:false})
-
-        //     )
-        // }
+        e.preventDefault()
+        if (this.isValid()){
+            this.setState({errors:{},isLoading:true})
+            this.props.userSignupRequest(this.state).then(
+                (res)=> this.context.router.history.push('/'),
+                (data) => this.setState({ errors: data.response.data,isLoading:false })
+            )
+        }
     }
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
+    }
+
+    isValid(){
+        const {errors,isValid } = validateInput(this.state)
+
+        if(!isValid) {
+            this.setState({errors})
+        }
+        return isValid
     }
 
     render(){
@@ -53,7 +47,7 @@ class SignUpForm extends React.Component{
         return(
             <form onSubmit={this.onSubmit}>
                 <h2>SignUp Form</h2>
-                <div className="form-group">
+                <div className={classnames("form-group",{'has-error':errors.username})}>
                     <label htmlFor="" className="control-label">Username</label>
                     <input
                     value ={this.state.username}
