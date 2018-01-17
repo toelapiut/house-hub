@@ -32,13 +32,9 @@ class LoginForm extends React.Component{
             // dispach some
             this.setState({errors:{},isLoading:true})
             this.props.login(this.state).then(
-<<<<<<< HEAD
-                (res)=> this.context.router.history.push('/dashboard'),
-=======
                 (res)=> this.context.router.history.push('/'),
                 (data) => this.setState({ errors: data.response.data.non_field_errors[0],isLoading:false })
                 
->>>>>>> 8328653c32120846929fb054a23a8989fb1780ca
                 // (err) => this.setState({errors:err.data.non_field_errors,isLoading:false})
                 
                 // console.log(this.state)
