@@ -9,17 +9,17 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import FlashMessagesList from './components/FlashMessagesList';
 import requireAuth from './utils/requireAuth';
-
+import Error404 from './components/Error404';
 class App extends Component {
   render() {
     return (
       <div className="App">
         <FlashMessagesList/>
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/login' component={LoginPage}/>
+          <Route exact path='/' component={LoginPage}/>
           <Route exact path='/signup' component={SignUpPage}/>
-          <Route exact path='/another' component={requireAuth(Home)}/>
+          <Route exact path='/dashboard' component={requireAuth(Home)}/>
+          <Route component={Error404} />
         </Switch>
       </div>
     );
