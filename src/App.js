@@ -14,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        {/* <FlashMessagesList/> */}
         <FlashMessagesList/>
         <Switch>
           <Route exact path='/' component={LoginPage}/>

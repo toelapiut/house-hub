@@ -35,7 +35,10 @@ class LoginForm extends React.Component{
                 (res)=> this.context.router.history.push('/'),
                 (data) => this.setState({ errors: data.response.data.non_field_errors[0],isLoading:false })
                 
+<<<<<<< HEAD
                 (res)=> this.context.router.history.push('/dashboard'),
+=======
+>>>>>>> 04580c05b5b505da7a84a3f741ab034bb2ac002d
                 // (err) => this.setState({errors:err.data.non_field_errors,isLoading:false})
                 
                 // console.log(this.state)
