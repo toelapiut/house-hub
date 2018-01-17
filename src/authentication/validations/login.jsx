@@ -1,7 +1,5 @@
 import isEmpty from 'lodash/isEmpty'
-// import isNull from 'lodash/isNull'
 import validator from 'validator'
-
 
 export default function validateInput(data) {
     let errors = {}

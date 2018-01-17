@@ -28,14 +28,16 @@ class LoginForm extends React.Component{
 
     onSubmit(e){
         e.preventDefault()
-        console.log(this.state)
         // if (this.isValid()){
             // dispach some
             this.setState({errors:{},isLoading:true})
             this.props.login(this.state).then(
                 (res)=> this.context.router.history.push('/'),
+                (data) => this.setState({ errors: data.response.data.non_field_errors[0],isLoading:false })
+                
                 // (err) => this.setState({errors:err.data.non_field_errors,isLoading:false})
-
+                
+                // console.log(this.state)
             )
         // }
     }
