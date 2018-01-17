@@ -1,7 +1,7 @@
 import React from 'react'
 import validateInput from './validations/login'
 import { connect } from 'react-redux'
-import { login } from '../actions/login'
+import { login } from '../actions/authActions'
 import PropTypes from 'prop-types';
 
 class LoginForm extends React.Component{
@@ -19,7 +19,7 @@ class LoginForm extends React.Component{
 
     isValid(){
         const {errors,isValid}=validateInput(this.state )
-        
+
         if(!isValid){
             this.setState({errors})
         }
@@ -29,20 +29,20 @@ class LoginForm extends React.Component{
     onSubmit(e){
         e.preventDefault()
         console.log(this.state)
-        if (this.isValid()){
-            // dispach some 
+        // if (this.isValid()){
+            // dispach some
             this.setState({errors:{},isLoading:true})
             this.props.login(this.state).then(
-                (res)=> this.context.router.history.push('/'),
-                (err) => this.setState({errors:err.data.errors,isLoading:false})
+                (res)=> this.context.router.history.push('/dashboard'),
+                // (err) => this.setState({errors:err.data.non_field_errors,isLoading:false})
 
             )
-        }
+        // }
     }
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
     }
-    
+
 
     render(){
         const{errors, username, password, isLoading } = this.state
@@ -51,9 +51,9 @@ class LoginForm extends React.Component{
                <h1>Login </h1>
 
                <div className="form-group">
-                <label className="Control-label">Username</label> 
-                <input 
-                value={this.state.username} 
+                <label className="Control-label">Username</label>
+                <input
+                value={this.state.username}
                 onChange={this.onChange.bind(this)}
                 type='text'
                 name='username'
@@ -61,12 +61,12 @@ class LoginForm extends React.Component{
                 className='form-control'
                 />
                 <label  className="Control-label">Password</label>
-                <input 
+                <input
                 value={this.state.password}
                 onChange={this.onChange.bind(this)}
                 type="password"
                 name='password'
-                error={errors.password}                
+                error={errors.password}
                 className='form-control'
                 />
                </div>
@@ -74,7 +74,7 @@ class LoginForm extends React.Component{
                 <button disabled={isLoading} className='btn btn-primary btn-lg'>Login</button>
                </div>
             </form>
-            
+
         )
     }
 }
