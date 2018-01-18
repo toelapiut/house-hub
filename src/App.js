@@ -10,6 +10,8 @@ import Home from './components/Home';
 import FlashMessagesList from './components/FlashMessagesList';
 import requireAuth from './utils/requireAuth';
 import Error404 from './components/Error404';
+import Charts from './components/Charts'
+
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class App extends Component {
           <Route exact path='/' component={LoginPage}/>
           <Route exact path='/signup' component={SignUpPage}/>
           <Route exact path='/dashboard' component={requireAuth(Home)}/>
+          <Route exact path='/charts' component={requireAuth(Charts)}/>
           <Route component={Error404} />
         </Switch>
       </div>
