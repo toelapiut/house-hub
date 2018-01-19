@@ -1,8 +1,8 @@
 // SideBar.js
 
 import React, {Component} from 'react';
-import mui from 'material-ui';
-import AlarmIcon from 'react-material-icons/icons/action/alarm';
+// import mui from 'material-ui';
+// import AlarmIcon from 'react-material-icons/icons/action/alarm';
 
 export default class SideBar extends Component {
     render() {
@@ -34,7 +34,7 @@ export default class SideBar extends Component {
                         <li className="header">MAIN NAVIGATION</li>
                         <li className="treeview">
                             <a href="#">
-                                <AlarmIcon/>
+                                {/* <AlarmIcon/> */}
                                 <span>Layout Options</span>
                                 <span className="pull-right-container">
                                     <span className="label label-primary pull-right">4</span>
