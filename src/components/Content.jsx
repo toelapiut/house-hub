@@ -1,7 +1,9 @@
 // Content.js
 
 import React, {Component} from 'react';
-import BarChart from './BarChart';
+import Charts from "./Charts"
+// import BarChart from './BarChart';
+// import DoughnutChart from './DoughnutChart'
 
 export default class Content extends Component {
     render(){
@@ -16,12 +18,24 @@ export default class Content extends Component {
                                 </div>
                                 <div className="box-body">
                                     <div className="row">
-                                        <div className="col-md-8">
+                                        <div className="col-md-4">
                                             <p className="text-center">
-                                                <BarChart/>
+                                            </p>
+                                                {/* <DoughnutChart/> */}
+                                                {/* <BarChart/> */}
+                                                <Charts/>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <p className="text-center">
+                                            </p>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <p className="text-center">
                                             </p>
                                         </div>
                                     </div>
+                                    {/* <BarChart/> */}
+                                    
                                 </div>
                                 <div className="box-footer">
                                     <div className="row">
