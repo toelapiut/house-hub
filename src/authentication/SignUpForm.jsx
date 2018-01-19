@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import validateInput from './validations/signup'
-
 class SignUpForm extends React.Component{
     constructor(props){
         super(props)
@@ -16,15 +15,13 @@ class SignUpForm extends React.Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-
     }
-
     onSubmit(e){
         e.preventDefault()
         if (this.isValid()){
             this.setState({errors:{},isLoading:true})
             this.props.userSignupRequest(this.state).then(
-                (res)=> this.context.router.history.push('/'),
+                (res)=> this.context.router.history.push('/dashboard'),
                 (data) => this.setState({ errors: data.response.data,isLoading:false })
             )
         }
@@ -32,16 +29,13 @@ class SignUpForm extends React.Component{
     onChange(e){
         this.setState({[e.target.name]:e.target.value})
     }
-
     isValid(){
         const {errors,isValid } = validateInput(this.state)
-
         if(!isValid) {
             this.setState({errors})
         }
         return isValid
     }
-
     render(){
         const {errors} =this.state
         return(
@@ -66,7 +60,6 @@ class SignUpForm extends React.Component{
                     name="email"
                     className="form-control"/>
                     {errors.email && <span className="help-block">{errors.email}</span> }
-
                 </div>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">Password</label>
@@ -77,7 +70,6 @@ class SignUpForm extends React.Component{
                     name="password"
                     className="form-control"/>
                     {errors.password && <span className="help-block">{errors.password}</span> }
-
                 </div>
                 <div className="form-group">
                     <label htmlFor="" className="control-label">PasswordConfirmation</label>
@@ -88,11 +80,9 @@ class SignUpForm extends React.Component{
                     name="password2"
                     className="form-control"/>
                     {errors.password2 && <span className="help-block">{errors.password2}</span> }
-
                 </div>
-
                 <div className="form-group">
-                    <button disabled={this.state.isLoading} className="btn btn-primary btn-lg">
+                    <button disabled={this.state.isLoading} className="form-control btn btn-register">
                     SignUp
                     </button>
                 </div>
@@ -100,7 +90,6 @@ class SignUpForm extends React.Component{
         )
     }
 }
-
 SignUpForm.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
     addFlashMessage: PropTypes.func.isReguired

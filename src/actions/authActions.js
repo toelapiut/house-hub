@@ -13,7 +13,7 @@ export function setCurrentUser(user){
 export function login(data){
     return dispatch => {
         // return axios.post('https://hauzhub.herokuapp.com/api-token-auth/',data).then(res=>{
-        return axios.post('http://localhost:8000/auth/',data).then(res=>{
+        return axios.post('https://hauzhub.herokuapp.com/api-token-auth/',data).then(res=>{
             
             
             console.log(res)
