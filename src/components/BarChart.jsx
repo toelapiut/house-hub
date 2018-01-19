@@ -1,6 +1,6 @@
 import React from 'react'
 import { Bar,Line } from 'react-chartjs'
-// import {Doughnut} from 'react-chartjs';
+import {Doughnut} from 'react-chartjs';
 
 class BarChart extends React.Component{
   constructor(props) {
@@ -11,9 +11,9 @@ class BarChart extends React.Component{
         datasets:[
           {
             label:"Population",
-            data:[6000,700,800,750],
+            data:[600,700,800,750],
             backGroundColor:[
-              '#e7e7e7'
+              "#3e95cd"
             ]
           }
         ]
@@ -25,7 +25,7 @@ class BarChart extends React.Component{
     return (
       <div className="chart">
 
-          <Bar data={this.state.ChartData} width={600} height={250} />
+          <Bar data={this.state.ChartData} width={1200} height={250} />
 
         CHART COMPONENT
       </div>
