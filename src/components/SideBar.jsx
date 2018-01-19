@@ -65,7 +65,7 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/widgets.html">
-                                <i className="fa fa-th fa-3x"></i>
+                                <i className="fa fa-th"></i>
                                 <span>DashBoard</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-green">new</small>
@@ -74,7 +74,7 @@ export default class SideBar extends Component {
                         </li>
                         <li className="treeview">
                             <a href="#">
-                                <i className="fa fa-table fa-3x"></i>
+                                <i className="fa fa-table "></i>
                                 <span>Charts</span>
                                 <span className="pull-right-container">
                                     <i className="fa fa-angle-left pull-right"></i>
@@ -119,7 +119,7 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/calendar.html">
-                                <i className="fa fa-calendar fa-3x"></i>
+                                <i className="fa fa-calendar"></i>
                                 <span>Calendar</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-red">3</small>
@@ -129,7 +129,7 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/mailbox/mailbox.html">
-                                <i className="fa fa-envelope fa-3x"></i>
+                                <i className="fa fa-envelope"></i>
                                 <span>Mailbox</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-yellow">12</small>
