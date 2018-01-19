@@ -10,6 +10,7 @@ import Home from './components/Home';
 import FlashMessagesList from './components/FlashMessagesList';
 import requireAuth from './utils/requireAuth';
 import Error404 from './components/Error404';
+import Landing from './components/Landing'
 class App extends Component {
   render() {
     return (
@@ -17,7 +18,7 @@ class App extends Component {
         {/* <FlashMessagesList/> */}
         <FlashMessagesList/>
         <Switch>
-          <Route exact path='/' component={LoginPage}/>
+          <Route exact path='/' component={Landing}/>
           <Route exact path='/signup' component={SignUpPage}/>
           <Route exact path='/dashboard' component={requireAuth(Home)}/>
           <Route component={Error404} />
