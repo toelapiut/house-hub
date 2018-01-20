@@ -8,7 +8,7 @@ export function homeData(properties) {
 export function loadHome() {
   return dispatch => {
     return axios.get('https://hauzhub.herokuapp.com/api/property_group/').then(res => {
-      console.log(res.data)
+      // console.log(res.data)
       dispatch(homeData(res.data))
     })
     // .catch(err)=>{

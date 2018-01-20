@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 class LoginForm extends React.Component {
     constructor(props) {
         super(props)
+        // the state that will contain login info which will be dispatched with an action
         this.state = {
             username: '',
             password: '',
