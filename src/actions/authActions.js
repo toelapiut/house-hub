@@ -6,16 +6,17 @@ export function setCurrentUser(user){
     return {
         type: SET_CURRENT_USER,
         user
-        
+
     }
 }
+
 
 export function login(data){
     return dispatch => {
         // return axios.post('https://hauzhub.herokuapp.com/api-token-auth/',data).then(res=>{
         return axios.post('https://hauzhub.herokuapp.com/api-token-auth/',data).then(res=>{
-            
-            
+
+
             console.log(res)
             const token = res.data.token
             localStorage.setItem('jwtToken',token)
@@ -24,7 +25,7 @@ export function login(data){
         })
     }
 }
- 
+
 export function logout(){
     return dispatch =>{
         localStorage.removeItem('jwtToken')
