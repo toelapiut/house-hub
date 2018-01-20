@@ -1,8 +1,8 @@
 import React from 'react'
 import { LineChart, Line,PieChart,Pie } from 'recharts';
-import Month from './Months'
+import Month from './dashboardCharts/Months'
 import { Switch, Route } from 'react-router-dom';
-
+import Expenses from './dashboardCharts/Expenses'
 
 class Charts extends React.Component {
     constructor(props) {
@@ -33,21 +33,22 @@ class Charts extends React.Component {
     ]
 
       return (
-          <div>
+          <div className="charts">
             <Switch>
             <Route exact path='/property' component={Month}/>
 
             </Switch>
 
             <h1>charts here</h1>
-            <div className="container">
+            <div className="container" style={{backgroundColor:"white"}}>
                 <div className="row">
                     <div className="col-md-4">
                     <h3>Properties</h3>
-                    <ul>
+                    {/* <ul>
                         <li><a href="">Court Peaky: Ruai</a></li>
                         <li><a href="">Court Blinders: Kabete</a></li>
-                    </ul>
+                    </ul> */}
+                    <Expenses/>
                     </div>
                     <div className="col-md-4">
                     <h3>Overall House Count</h3>

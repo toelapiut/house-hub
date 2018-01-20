@@ -5,7 +5,6 @@ import Content from './Content';
 
 
 
-
 export default() => {
   return (
     <div>
@@ -15,5 +14,3 @@ export default() => {
     </div>
   )
 }
-
-

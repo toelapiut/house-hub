@@ -2,8 +2,10 @@
 
 import React, {Component} from 'react';
 import Charts from "./Charts"
-// import BarChart from './BarChart';
-// import DoughnutChart from './DoughnutChart'
+import Expenses from './dashboardCharts/Expenses'
+import HouseCount from './dashboardCharts/HouseCount'
+import Months from './dashboardCharts/Months'
+import SomeTenants from './dashboardCharts/SomeTenants'
 
 export default class Content extends Component {
     render(){
@@ -19,23 +21,33 @@ export default class Content extends Component {
                                 <div className="box-body">
                                     <div className="row">
                                         <div className="col-md-4">
-                                            <p className="text-center">
-                                            </p>
-                                                {/* <DoughnutChart/> */}
-                                                {/* <BarChart/> */}
-                                                <Charts/>
+                                            <p className="text-center">Overall House Count</p>
+                                            <HouseCount/>
                                         </div>
                                         <div className="col-md-4">
-                                            <p className="text-center">
-                                            </p>
+                                            <p className="text-center">Overall Total Income</p>
+                                            <Expenses/>
                                         </div>
                                         <div className="col-md-4">
-                                            <p className="text-center">
-                                            </p>
+                                            <h3 className="text-center">
+                                            Overall Expenses
+                                            </h3>
+                                            <Expenses/>
+                                        </div>
+                                        <div className="col-md-5">
+                                        <h3 className="text-center">Monthly Income</h3>
+
+                                        {/* <p className="text-center">Monthly Income</p> */}
+                                            <Months/>
+                                        </div>
+                                        <div className="col-md-2">
+                                        </div>
+                                        <div className="col-md-5">
+                                            <h3>Tenants Status</h3>
+                                            <SomeTenants/>
                                         </div>
                                     </div>
-                                    {/* <BarChart/> */}
-                                    
+
                                 </div>
                                 <div className="box-footer">
                                     <div className="row">
@@ -45,7 +57,7 @@ export default class Content extends Component {
                                                 <h5 className="description-header">$35,210.43</h5>
                                                 <span className="description-text">TOTAL REVENUE</span>
                                             </div>
-                                        </div>    
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -1,8 +1,26 @@
 // Header.js
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import {logout} from '../actions/authActions'
 
-export default class Header extends Component {
+class Header extends Component {
+
+
+    logout(e){
+        e.preventDefault()
+        this.props.logout()
+    }
     render(){
+
+        const { isAuthenticated } = this.props.auth
+
+        const userLinks = (
+            <ul className="nav navbar-nav navbar-right">
+                <li><a href="" onClick={this.logout.bind(this)}>Logout</a></li>
+            </ul>
+        )        
         return (
             <header className="main-header">
                 <a href="#" className="logo">
@@ -13,14 +31,14 @@ export default class Header extends Component {
                     <a href="#" className="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span className="sr-only">Toggle navigation</span>
                     </a>
-                    {/* <div className="navbar-custom-menu">
+                    <div className="navbar-custom-menu">
                         <ul className="nav navbar-nav">
-                            <li className="dropdown messages-menu"> */}
-                                {/* <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                            <li className="dropdown messages-menu">
+                                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                     <i className="fa fa-envelope-o"></i>
                                     <span className="label label-success">4</span>
-                                </a> */}
-                                {/* <ul className="dropdown-menu">
+                                </a>
+                                <ul className="dropdown-menu">
                                     <li className="header">You have 4 messages</li>
                                     <li>
                                         <ul className="menu">
@@ -36,14 +54,29 @@ export default class Header extends Component {
                                                     <p>Why not buy a new awesome theme?</p>
                                                 </a>
                                             </li>
+                                            
                                         </ul>
                                     </li>
-                                </ul> */}
-                            {/* </li>
+                                </ul>
+                            </li>
+                <li><a href="" onClick={this.logout.bind(this)}>Logout</a></li>
+                            
                         </ul>
-                    </div> */}
+                    </div>
                 </nav>
             </header>
         )
     }
 }
+
+Header.propTypes = {
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired
+}
+
+function mapStateToProps(state){
+    return {
+        auth: state.auth
+    }
+}
+export default connect(mapStateToProps,{logout})(Header)

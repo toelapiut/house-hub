@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom'
 import rootReducer from './rootReducer'
 import setAuthorizationToken from './utils/setAuthorizationToken'
 import { setCurrentUser } from './actions/authActions';
-
+import {loadHome} from './actions/dashboardActions'
 const StoreInstance = Store(
 // const StoreInstance = createStore(
 
@@ -24,7 +24,9 @@ const StoreInstance = Store(
 
 if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken)
+  console.log('setting authrorization header')
   StoreInstance.dispatch(setCurrentUser(localStorage.jwtToken))
+  StoreInstance.dispatch(loadHome())
 }
 
 ReactDOM.render(
