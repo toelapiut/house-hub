@@ -35,7 +35,7 @@ export default class SideBar extends Component {
                         <li className="treeview">
                             <a href="#">
                                 {/* <AlarmIcon/> */}
-                                <span>Layout Options</span>
+                                <span>Overall Info</span>
                                 <span className="pull-right-container">
                                     <span className="label label-primary pull-right">4</span>
                                 </span>
@@ -65,8 +65,8 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/widgets.html">
-                                <i className="fa fa-th fa-3x"></i>
-                                <span>DashBoard</span>
+                                <i className="fa fa-th"></i>
+                                <span>Properties</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-green">new</small>
                                 </span>
@@ -74,13 +74,13 @@ export default class SideBar extends Component {
                         </li>
                         <li className="treeview">
                             <a href="#">
-                                <i className="fa fa-table fa-3x"></i>
-                                <span>Charts</span>
+                                <i className="fa fa-table "></i>
+                                <span>Tenants</span>
                                 <span className="pull-right-container">
                                     <i className="fa fa-angle-left pull-right"></i>
                                 </span>
                             </a>
-                            <ul className="treeview-menu">
+                            {/* <ul className="treeview-menu">
                                 <li>
                                     <a href="pages/charts/chartjs.html">
                                         <i className="fa fa-circle-o "></i>
@@ -101,7 +101,7 @@ export default class SideBar extends Component {
                                         <i className="fa fa-circle-o"></i>
                                         Inline charts</a>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </li>
                         <li>
                             <ul className="treeview-menu">
@@ -119,7 +119,7 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/calendar.html">
-                                <i className="fa fa-calendar fa-3x"></i>
+                                <i className="fa fa-calendar"></i>
                                 <span>Calendar</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-red">3</small>
@@ -129,7 +129,7 @@ export default class SideBar extends Component {
                         </li>
                         <li>
                             <a href="pages/mailbox/mailbox.html">
-                                <i className="fa fa-envelope fa-3x"></i>
+                                <i className="fa fa-envelope "></i>
                                 <span>Mailbox</span>
                                 <span className="pull-right-container">
                                     <small className="label pull-right bg-yellow">12</small>

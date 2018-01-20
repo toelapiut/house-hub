@@ -11,7 +11,6 @@ export default class Month extends React.Component {
             {name: 'September', "Court Peaky": 400000, 'Court Blinders': 390008, amt: 2000},
             {name: 'October', "Court Peaky": 400000, 'Court Blinders': 480000, amt: 2181},
             {name: 'November', "Court Peaky": 400000, 'Court Blinders': 380000, amt: 2500},
-            // {name: 'Page G', uv: 3490, pv: 4300, amt: 2100},
       ];
 
         return(
