@@ -13,6 +13,7 @@ import _ from 'lodash'
 class Content extends Component {
   constructor(props) {
     super(props)
+
     this.totalHouses = this.totalHouses.bind(this)
     this.totalMoney = this.totalMoney.bind(this)
     
@@ -27,9 +28,9 @@ class Content extends Component {
     let occupied = 0
 
     for (let value of house_data) {
-      for (let cash of value.group_property){
-        total += cash.house_count
-        occupied += cash.property_houses.length
+      for (let property of value.group_property){
+        total += property.house_count
+        occupied += property.property_houses.length
       }
     }
 
@@ -40,25 +41,65 @@ class Content extends Component {
 
   }
   totalMoney(){
-    
+    {
         let house_data = this.props.Properties.data
+        // console.log("for loop here totalMoney()"+house_data);
     
         let count = 0
+        let propertyName = ''
+        let processedData = []
         for (let value of house_data) {
-          for (let cash of value.group_property){
-            count += cash.house_count
+          for (let property of value.group_property){
+            // console.log("for loop here totalMoney()"+property.name);
+              propertyName = property.name
+              let count = 0
+            for (let cash of property.property_houses){
+              count += parseInt(cash.price)
+            }
+            // console.log({"name":propertyName,"value":count})
+            processedData.push({"name":propertyName,"value":count})
           }
         }
-        // console.log("for loop here"+count);
-        return count
+        return processedData
+      }
     
       }
+
+      totalTenants(){
+        {
+            let house_data = this.props.Properties.data
+            // console.log("for loop here totalMoney()"+house_data);
+        
+            // let count = 0
+            let propertyName = ''
+            let processedData = []
+            for (let value of house_data) {
+              for (let property of value.group_property){
+                // console.log("for loop here totalMoney()"+property.name);
+                  propertyName = property.name
+                  // let count = 0
+                for (let cash of property.property_houses){
+                  // count += parseInt(cash.price)
+                  let tenant_object=cash.tenants
+                  tenant_object.property = propertyName
+                  processedData.push(tenant_object)
+                }
+                // console.log({"name":propertyName,"value":count})
+              }
+            }
+            return processedData
+          }
+        
+          }
 
   render() {
     // this data is being sent as a prop to children components
     let house_data = this.totalHouses()
 
-    var principle_money= this.totalMoney()
+    var income_data= this.totalMoney()
+
+    const tenant_data = this.totalTenants()
+    // console.log(tenant_data)
 
     return (<div className="content-wrapper">
       <section className="content-header">
@@ -76,13 +117,14 @@ class Content extends Component {
                   </div>
                   <div className="col-md-4">
                     <p className="text-center">Overall Total Income</p>
-                    <Expenses/>
+                    <Expenses incomeData={income_data}/>
                   </div>
                   <div className="col-md-4">
                     <h3 className="text-center">
                       Overall Expenses
                     </h3>
-                    <Expenses/>
+                    <Expenses incomeData={income_data}/>
+                    
                   </div>
                   <div className="col-md-5">
                     <h3 className="text-center">Monthly Income</h3>
@@ -93,7 +135,7 @@ class Content extends Component {
                   <div className="col-md-2"></div>
                   <div className="col-md-5">
                     <h3>Tenants Status</h3>
-                    <SomeTenants/>
+                    <SomeTenants tenantData={tenant_data}/>
                   </div>
                 </div>
 
