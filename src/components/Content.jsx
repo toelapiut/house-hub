@@ -78,12 +78,14 @@ class Content extends Component {
                 // console.log("for loop here totalMoney()"+property.name);
                   propertyName = property.name
                   // let count = 0
-                for (let cash of property.property_houses){
-                  // count += parseInt(cash.price)
-                  let tenant_object=cash.tenants
-                  tenant_object.property = propertyName
-                  processedData.push(tenant_object)
-                }
+
+                // for (let cash of property.property_houses){
+                //   // count += parseInt(cash.price)
+                //   let tenant_object=cash.tenants
+                //   tenant_object.property = propertyName
+                //   processedData.push(tenant_object)
+                // }
+                
                 // console.log({"name":propertyName,"value":count})
               }
             }
@@ -112,11 +114,11 @@ class Content extends Component {
               <div className="box-body">
                 <div className="row">
                   <div className="col-md-4">
-                    <p className="text-center">Overall House Count</p>
+                    <h3 className="text-center">Overall House Count</h3>
                     <HouseCount house_count={house_data}/>
                   </div>
                   <div className="col-md-4">
-                    <p className="text-center">Overall Total Income</p>
+                    <h3 className="text-center">Overall Total Income</h3>
                     <Expenses incomeData={income_data}/>
                   </div>
                   <div className="col-md-4">
@@ -126,14 +128,14 @@ class Content extends Component {
                     <Expenses incomeData={income_data}/>
                     
                   </div>
-                  <div className="col-md-5">
+                  <div className="">
                     <h3 className="text-center">Monthly Income</h3>
 
                     {/* <p className="text-center">Monthly Income</p> */}
                     <Months/>
                   </div>
                   <div className="col-md-2"></div>
-                  <div className="col-md-5">
+                  <div className="col-md-12">
                     <h3>Tenants Status</h3>
                     <SomeTenants tenantData={tenant_data}/>
                   </div>

@@ -3,9 +3,16 @@
 import React, {Component} from 'react';
 // import mui from 'material-ui';
 // import AlarmIcon from 'react-material-icons/icons/action/alarm';
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
-export default class SideBar extends Component {
+class SideBar extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
+    let house_data = this.props.Properties.data
+    
     return (<aside className="main-sidebar">
       <section className="sidebar">
         <div className="user-panel">
@@ -43,29 +50,29 @@ export default class SideBar extends Component {
             </a>
             <ul className="treeview-menu">
               <li>
-                <a href="pages/layout/top-nav.html">
+                <a href="/">
                   <i className="fa fa-circle-o"></i>
                   Top Navigation</a>
               </li>
               <li>
-                <a href="pages/layout/boxed.html">
+                <a href="/">
                   <i className="fa fa-circle-o"></i>
                   Boxed</a>
               </li>
               <li>
-                <a href="pages/layout/fixed.html">
+                <a href="#">
                   <i className="fa fa-circle-o"></i>
                   Fixed</a>
               </li>
               <li>
-                <a href="pages/layout/collapsed-sidebar.html">
+                <a href="/">
                   <i className="fa fa-circle-o"></i>
                   Collapsed Sidebar</a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="pages/widgets.html">
+            <a href="/dashboard#/property/3">
               <i className="fa fa-th"></i>
               <span>Properties</span>
               <span className="pull-right-container">
@@ -108,19 +115,19 @@ export default class SideBar extends Component {
           <li>
             <ul className="treeview-menu">
               <li>
-                <a href="pages/tables/simple.html">
+                <a href="/">
                   <i className="fa fa-circle-o"></i>
                   Simple tables</a>
               </li>
               <li>
-                <a href="pages/tables/data.html">
+                <a href="/">
                   <i className="fa fa-circle-o"></i>
                   Data tables</a>
               </li>
             </ul>
           </li>
-          <li>
-            <a href="pages/calendar.html">
+          {/* <li>
+            <a href="/">
               <i className="fa fa-calendar"></i>
               <span>Calendar</span>
               <span className="pull-right-container">
@@ -128,9 +135,9 @@ export default class SideBar extends Component {
                 <small className="label pull-right bg-blue">17</small>
               </span>
             </a>
-          </li>
-          <li>
-            <a href="pages/mailbox/mailbox.html">
+          </li> */}
+          {/* <li>
+            <a href="/">
               <i className="fa fa-envelope "></i>
               <span>Mailbox</span>
               <span className="pull-right-container">
@@ -139,9 +146,18 @@ export default class SideBar extends Component {
                 <small className="label pull-right bg-red">5</small>
               </span>
             </a>
-          </li>
+          </li> */}
         </ul>
       </section>
     </aside>)
   }
 }
+const mapStateToProp = state => {
+  var x = state.homeData.data
+  // console.log(x)
+  return {Properties: state.homeData}
+}
+SideBar.propTypes = {
+  Properties: PropTypes.array
+}
+export default connect(mapStateToProp)(SideBar)
