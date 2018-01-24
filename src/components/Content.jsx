@@ -128,7 +128,7 @@ class Content extends Component {
                     <Expenses incomeData={income_data}/>
                     
                   </div>
-                  <div className="">
+                  <div className="col-md-12">
                     <h3 className="text-center">Monthly Income</h3>
 
                     {/* <p className="text-center">Monthly Income</p> */}
