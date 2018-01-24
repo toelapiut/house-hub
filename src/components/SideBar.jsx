@@ -5,13 +5,29 @@ import React, {Component} from 'react';
 // import AlarmIcon from 'react-material-icons/icons/action/alarm';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import { overallProperties,eachProperty } from '../actions/propertyActions.js'
 
 class SideBar extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      propertyContent: false
+    }
+    this.changeContent = this.changeContent.bind(this)
+    this.resumeContent = this.resumeContent.bind(this)
   }
+  changeContent(){
+    this.setState({propertyContent:true})
+    this.props.overallProperties(this.state)
+  }
+  resumeContent(){
+    this.setState({propertyContent:false})
+    this.props.overallProperties(this.state)
+  }
+  
   render() {
     let house_data = this.props.Properties.data
+    this.props.overallProperties(this.state)
     
     return (<aside className="main-sidebar">
       <section className="sidebar">
@@ -41,7 +57,7 @@ class SideBar extends Component {
         <ul className="sidebar-menu" data-widget="tree">
           <li className="header">MAIN NAVIGATION</li>
           <li className="treeview">
-            <a href="#">
+            <a href="#" onClick={this.resumeContent}>
               {/* <AlarmIcon/> */}
               <span>Overall Info</span>
               <span className="pull-right-container">
@@ -72,7 +88,7 @@ class SideBar extends Component {
             </ul>
           </li>
           <li>
-            <a href="/dashboard#/property/3">
+            <a  onClick={this.changeContent}>
               <i className="fa fa-th"></i>
               <span>Properties</span>
               <span className="pull-right-container">
@@ -158,6 +174,8 @@ const mapStateToProp = state => {
   return {Properties: state.homeData}
 }
 SideBar.propTypes = {
-  Properties: PropTypes.array
+  Properties: PropTypes.array,
+  overallProperties: PropTypes.func.isRequired
+
 }
-export default connect(mapStateToProp)(SideBar)
+export default connect(mapStateToProp,{overallProperties})(SideBar)
