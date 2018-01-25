@@ -7,6 +7,8 @@ import Charts from './Charts'
 import {overallProperties} from '../actions/propertyActions'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
+import {loadHome} from '../actions/dashboardActions'
+// import {loadPayments} from '../actions/payments.action'
 
 class Home extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class Home extends Component {
   }
 
   render() {
-
+    // loadPayments()
+    loadHome()
     let renderedContent = null
 
     if (this.props.overallProperty.propertyContent){
@@ -36,7 +39,9 @@ class Home extends Component {
 }
 
 const mapStateToProp = state => {
-  return {overallProperty: state.overallProperty.data}
+  return {
+    overallProperty: state.overallProperty.data
+  }
 }
 Home.propTypes = {
   overallProperty: PropTypes.array

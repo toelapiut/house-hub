@@ -16,7 +16,9 @@ class SideBar extends Component {
     this.changeContent = this.changeContent.bind(this)
     this.resumeContent = this.resumeContent.bind(this)
   }
-  changeContent(){
+  changeContent(qwerty){
+    // console.log(qwerty)
+    
     this.setState({propertyContent:true})
     this.props.overallProperties(this.state)
   }
@@ -28,8 +30,24 @@ class SideBar extends Component {
   render() {
     let house_data = this.props.Properties.data
     this.props.overallProperties(this.state)
+    const property_list = this.props.Properties
+    const listItems = property_list.data.map((property) =>
+
+      <li>
+      <a  onClick={this.changeContent.bind(null,property.id)}>
+        <i className="fa fa-th"></i>
+        <span>{property.name}</span>
+        <span className="pull-right-container">
+          <small className="label pull-right bg-green">new</small>
+        </span>
+      </a>
+      </li>
+    )
+    // console.log(listItems.length)
     
-    return (<aside className="main-sidebar">
+
+    
+    return (<aside className="main-sidebar" style={{position:"fixed"}}>
       <section className="sidebar">
         <div className="user-panel">
           {/* <div className="pull-left image">
@@ -64,7 +82,7 @@ class SideBar extends Component {
                 <span className="label label-primary pull-right">4</span>
               </span>
             </a>
-            <ul className="treeview-menu">
+            {/* <ul className="treeview-menu">
               <li>
                 <a href="/">
                   <i className="fa fa-circle-o"></i>
@@ -85,25 +103,28 @@ class SideBar extends Component {
                   <i className="fa fa-circle-o"></i>
                   Collapsed Sidebar</a>
               </li>
-            </ul>
+            </ul> */}
           </li>
-          <li>
-            <a  onClick={this.changeContent}>
+
+          {/* <li>
+            <a  onClick={this.changeContent.bind(null,'aszdfsdfsdf')}>
               <i className="fa fa-th"></i>
               <span>Properties</span>
               <span className="pull-right-container">
                 <small className="label pull-right bg-green">new</small>
               </span>
             </a>
-          </li>
+          </li> */}
+          {listItems}
+
           <li className="treeview">
-            <a href="#">
+            {/* <a href="#">
               <i className="fa fa-table "></i>
               <span>Tenants</span>
               <span className="pull-right-container">
                 <i className="fa fa-angle-left pull-right"></i>
               </span>
-            </a>
+            </a> */}
             {/* <ul className="treeview-menu">
                                 <li>
                                     <a href="pages/charts/chartjs.html">
@@ -169,9 +190,11 @@ class SideBar extends Component {
   }
 }
 const mapStateToProp = state => {
-  var x = state.homeData.data
+  var x = state
   // console.log(x)
-  return {Properties: state.homeData}
+  return {
+    Properties: state.homeData,
+  }
 }
 SideBar.propTypes = {
   Properties: PropTypes.array,
