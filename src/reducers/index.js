@@ -5,13 +5,15 @@ import auth from './auth'
 import homeData from './homeData'
 import overallProperty from './overallProperty'
 import paymentsData from "./paymentsData";
+import propertyData from "./propertyData";
 
 const rootReducer = combineReducers({
     flashMessages,
     auth,
     homeData,
     overallProperty,
-    paymentsData
+    paymentsData,
+    propertyData
 });
 
 export default rootReducer;

@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 // import AlarmIcon from 'react-material-icons/icons/action/alarm';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { overallProperties,eachProperty } from '../actions/propertyActions.js'
+import { overallProperties,propertyData } from '../actions/propertyActions.js'
 import {loadHome} from '../actions/dashboardActions'
 
 class SideBar extends Component {
@@ -13,7 +13,8 @@ class SideBar extends Component {
     super(props)
     this.state = {
       propertyContent: false,
-      data:[]
+      data:[],
+      property:[]
     }
     this.changeContent = this.changeContent.bind(this)
     this.resumeContent = this.resumeContent.bind(this)
@@ -22,15 +23,17 @@ class SideBar extends Component {
   changeContent(qwerty){
     // console.log(qwerty)
     
-    this.setState({propertyContent:true})
-    this.props.overallProperties(this.state)
+    // this.setState({propertyContent:true,property:qwerty})
+    this.props.propertyData({property:qwerty},{propertyContent:true})
+    this.props.overallProperties({propertyContent:true})
+    
   }
   resumeContent(){
-    this.setState({propertyContent:false})
-    console.log('====================================');
-    console.log("resumeContent function",this.state);
-    console.log('====================================');
-    this.props.overallProperties(this.state)
+    // console.log('====================================');
+    // console.log("resumeContent function",this.state);
+    // console.log('====================================');
+    // this is an action that updates redux state
+    this.props.overallProperties({propertyContent:false})
   }
 
   componentWillMount(){
@@ -57,16 +60,16 @@ class SideBar extends Component {
 
   componentWillReceiveProps(nextProps){
     this.setState({data:nextProps.Properties.data})
-    // console.log('====================================');
-    // console.log("component will reeiveprops",this.state);
-    // console.log('====================================');
+    console.log('====================================');
+    console.log("component will reeiveprops",this.state);
+    console.log('====================================');
     
   }
 
   shouldComponentUpdate(nextProps,nextState){
-    // console.log('====================================');
-    // console.log('should component update',nextProps);
-    // console.log('====================================');
+    console.log('====================================');
+    console.log('should component update',nextProps);
+    console.log('====================================');
     return true
   }
 
@@ -173,7 +176,8 @@ const mapStateToProp = state => {
 SideBar.propTypes = {
   Properties: PropTypes.array,
   overallProperties: PropTypes.func.isRequired,
-  loadHome:PropTypes.func.isRequired
+  loadHome:PropTypes.func.isRequired,
+  propertyData:PropTypes.func
 
 }
-export default connect(mapStateToProp,{overallProperties,loadHome})(SideBar)
+export default connect(mapStateToProp,{overallProperties,propertyData,loadHome})(SideBar)

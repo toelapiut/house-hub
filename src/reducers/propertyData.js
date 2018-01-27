@@ -1,4 +1,4 @@
-import {SET_OVERALL_PROPERTIES} from '../actions/types'
+import {SET_CURRENT_PROPERTY} from '../actions/types'
 
 const initialState = {
   fetching: false,
@@ -9,7 +9,7 @@ const initialState = {
 
 export default(state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_OVERALL_PROPERTIES:
+    case SET_CURRENT_PROPERTY:
       return {
         ...state,
         fetching: false,

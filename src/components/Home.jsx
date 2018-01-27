@@ -51,6 +51,6 @@ const mapStateToProp = state => {
   }
 }
 Home.propTypes = {
-  overallProperty: PropTypes.array
+  overallProperty: PropTypes.object
 }
 export default connect(mapStateToProp,{overallProperties,loadHome})(Home);
