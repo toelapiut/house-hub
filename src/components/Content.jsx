@@ -9,6 +9,8 @@ import SomeTenants from './dashboardCharts/SomeTenants'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import _ from 'lodash'
+import PropertyForm from "./forms/propertyForm";
+// import {loadHome} from '../actions/dashboardActions'
 
 class Content extends Component {
   constructor(props) {
@@ -16,30 +18,57 @@ class Content extends Component {
 
     this.totalHouses = this.totalHouses.bind(this)
     this.totalMoney = this.totalMoney.bind(this)
+    this.totalExpenses = this.totalExpenses.bind(this)
+    this.monthlyMoney = this.monthlyMoney.bind(this)
     
+  }
+
+  monthlyMoney(){
+    let payment_data = this.props.payments
+    let cash = 0
+    // let {January, February}
+    for(let item of payment_data){
+      cash = item.amount
+      // month = item.month
+      // name = item.property_id.name
+    }
+
   }
 
   // this is a function that takes the state from the api backend and convert it to data that will be rendered in a chart component
   totalHouses(){
 
     let house_data = this.props.Properties.data
+    let total = []
 
-    let total = 0
-    let occupied = 0
-
-    for (let value of house_data) {
-      for (let property of value.group_property){
-        total += property.house_count
-        occupied += property.property_houses.length
+      for (let property of house_data){
+        let name = property.name
+        let eachdata={
+          name:property.name,
+          value:property.house_count
+        }
+        total.push(eachdata)
       }
-    }
-
-    return {
-      "available":total-occupied,
-      "occupied":occupied
-    }
+    return total
 
   }
+
+  totalExpenses(){
+    let property_data = this.props.Properties.data
+    let total_expenses = []
+
+    for (let property of property_data){
+      let name = property.name
+      let total = parseInt(property.gabbage)+parseInt(property.security)+parseInt(property.cleaning)+parseInt(property.property_tax)
+      let eachdata = {
+        name:property.name,
+        value:total
+      }
+      total_expenses.push(eachdata)
+    }
+    return total_expenses
+  }
+
   totalMoney(){
     {
         let house_data = this.props.Properties.data
@@ -73,22 +102,11 @@ class Content extends Component {
             // let count = 0
             let propertyName = ''
             let processedData = []
-            for (let value of house_data) {
-              for (let property of value.group_property){
-                // console.log("for loop here totalMoney()"+property.name);
-                  propertyName = property.name
-                  // let count = 0
-
-                // for (let cash of property.property_houses){
-                //   // count += parseInt(cash.price)
-                //   let tenant_object=cash.tenants
-                //   tenant_object.property = propertyName
-                //   processedData.push(tenant_object)
-                // }
-                
-                // console.log({"name":propertyName,"value":count})
-              }
-            }
+            // for (let value of house_data) {
+            //   for (let property of value.group_property){
+            //       propertyName = property.name
+            //   }
+            // }
             return processedData
           }
         
@@ -96,15 +114,38 @@ class Content extends Component {
 
   render() {
     // this data is being sent as a prop to children components
-    let house_data = this.totalHouses()
+    const house_data = this.totalHouses()
+    const expenses_data = this.totalExpenses()
+    console.log(this.props.payments)
+    // var income_data= this.totalMoney()
 
-    var income_data= this.totalMoney()
-
-    const tenant_data = this.totalTenants()
-    // console.log(tenant_data)
+    // const tenant_data = this.totalTenants()
+    // console.log(expenses_data)
 
     return (<div className="content-wrapper">
       <section className="content-header">
+      <button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Property</button>
+
+
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New Property</h4>
+            </div>
+            <div class="modal-body">
+              <PropertyForm/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            </div>
+
+        </div>
+        </div>
         <div className="row">
           <div className="col-md-12">
             <div className="box">
@@ -119,13 +160,13 @@ class Content extends Component {
                   </div>
                   <div className="col-md-4">
                     <h3 className="text-center">Overall Total Income</h3>
-                    <Expenses incomeData={income_data}/>
+                    <Expenses incomeData={house_data}/>
                   </div>
                   <div className="col-md-4">
                     <h3 className="text-center">
                       Overall Expenses
                     </h3>
-                    <Expenses incomeData={income_data}/>
+                    <Expenses incomeData={expenses_data}/>
                     
                   </div>
                   <div className="col-md-12">
@@ -137,7 +178,7 @@ class Content extends Component {
                   <div className="col-md-2"></div>
                   <div className="col-md-12">
                     <h3>Tenants Status</h3>
-                    <SomeTenants tenantData={tenant_data}/>
+                    {/* <SomeTenants tenantData={tenant_data}/> */}
                   </div>
                 </div>
 
@@ -164,11 +205,17 @@ class Content extends Component {
 }
 
 const mapStateToProp = state => {
-  var x = state.homeData.data
+  // var x = state.homeData.data
   // console.log(x)
-  return {Properties: state.homeData}
+  return {
+    Properties: state.homeData,
+    payments: state.paymentsData.data
+    
+  }
 }
 Content.propTypes = {
-  Properties: PropTypes.array
+  Properties: PropTypes.array,
+  payments: PropTypes.array
+  
 }
 export default connect(mapStateToProp)(Content)

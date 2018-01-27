@@ -25,10 +25,10 @@ export default class HouseCount extends React.Component {
             {name: 'Occupied', value: data.occupied},
             {name: 'Available', value: data.available},
                 ]
-        console.log(data.available)
+        // console.log(data.available)
         return(
             <PieChart width={800} height={400}>
-            <Pie data={data01} cx={200} cy={200} innerRadius={40} outerRadius={90} fill="#82ca9d" label/>
+            <Pie data={data} cx={200} cy={200} innerRadius={40} outerRadius={90} fill="#82ca9d" label/>
            </PieChart>
         )
     }

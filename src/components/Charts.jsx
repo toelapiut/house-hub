@@ -33,74 +33,87 @@ class Charts extends React.Component {
     ]
 
       return (
-          <div className="charts">
-            <Switch>
-            <Route exact path='/property' component={Month}/>
+          <div className="content-wrapper">
+            <section className="content-header">
+            <div className="container" style={{backgroundColor:"white",height: "100vh"}}>
+            <h1><span>Alabasta Towers</span><span><button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add House</button></span></h1>
 
-            </Switch>
+                {/* <button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add House</button> */}
 
-            <h1>charts here</h1>
-            <div className="container" style={{backgroundColor:"white"}}>
-                <div className="row">
-                    <div className="col-md-4">
-                    <h3>Properties</h3>
-                    {/* <ul>
-                        <li><a href="">Court Peaky: Ruai</a></li>
-                        <li><a href="">Court Blinders: Kabete</a></li>
-                    </ul> */}
-                    <Expenses/>
+
+                <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add House and Info</h4>
                     </div>
-                    <div className="col-md-4">
-                    <h3>Overall House Count</h3>
-                    <PieChart width={800} height={400}>
-                    <Pie data={data02} cx={200} cy={200} innerRadius={40} outerRadius={90} fill="#82ca9d" label/>
-                   </PieChart>
+                    <div class="modal-body">
+                    <form action="/action_page.php">
+                        <div class="form-group">
+                            <label for="house no">House No</label>
+                            <input type="text" class="form-control" id="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="house no">Full Names</label>
+                            <input type="text" class="form-control" id="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="house no">Phone Number</label>
+                            <input type="text" class="form-control" id="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Rent Amount</label>
+                            <input type="text" class="form-control" id="pwd"/>
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                        </form>
                     </div>
-                    <div className="col-md-4">
-                    <h3>This Month Income(Ksh)</h3>
-                    <PieChart width={800} height={400}>
-                    <Pie data={income} cx={200} cy={200} innerRadius={70} outerRadius={90} fill="#82ca9d" label/>
-                   </PieChart>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
+                    </div>
+
                 </div>
-                <div className="col-md-6">
-                    <h3>Monthly Income</h3>
-                <Month/>
                 </div>
-                <div className="col-md-6">
-                    <h3>Tenants</h3>
                 <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Full Names</th>
-                        <th>Property</th>
                         <th>House No</th>
-                        <th>status</th>
+                        <th>Full Names</th>
+                        <th>Phone Number</th>
+                        <th>price</th>
+                        <th>occupancy</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>David Mwangi</td>
-                        <td>Court Peaky</td>
                         <td>3A</td>
-                        <td>Paid</td>
+                        <td>David Mwangi</td>
+                        <td>0711347722</td>
+                        <td>12000</td>
+                        <td>Vacant</td>
                     </tr>
                     <tr>
-                        <td>David Mwangi</td>
-                        <td>Court Peaky</td>
-                        <td>3A</td>
-                        <td>Paid</td>
+                        <td>2A</td>
+                        <td>Toel Apiut</td>
+                        <td>07569375</td>
+                        <td>12000</td>
+                        <td>Occupied</td>
                     </tr>                    
                     <tr>
-                        <td>David Mwangi</td>
-                        <td>Court Peaky</td>
-                        <td>3A</td>
-                        <td>Paid</td>
+                        <td>3B</td>
+                        <td>Nish </td>
+                        <td>07365738</td>
+                        <td>12000</td>
+                        <td>Occupied</td>
                     </tr>
                 </tbody>
                 </table>
-                </div>
             </div>
+            </section>
           </div>
       );
     }

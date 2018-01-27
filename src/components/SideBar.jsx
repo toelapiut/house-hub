@@ -27,6 +27,9 @@ class SideBar extends Component {
   }
   resumeContent(){
     this.setState({propertyContent:false})
+    console.log('====================================');
+    console.log("resumeContent function",this.state);
+    console.log('====================================');
     this.props.overallProperties(this.state)
   }
 
@@ -46,31 +49,31 @@ class SideBar extends Component {
     //       </a>
     //       </li>
     //     )
-  console.log('====================================');
-  console.log('componentwillmount functiont',this.props);
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log('componentwillmount functiont',this.props);
+  // console.log('====================================');
 
   }
 
   componentWillReceiveProps(nextProps){
     this.setState({data:nextProps.Properties.data})
-    console.log('====================================');
-    console.log("component will reeiveprops",this.state);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log("component will reeiveprops",this.state);
+    // console.log('====================================');
     
   }
 
   shouldComponentUpdate(nextProps,nextState){
-    console.log('====================================');
-    console.log('should component update',nextProps);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log('should component update',nextProps);
+    // console.log('====================================');
     return true
   }
 
   componentWillUpdate(nextProps){
-    console.log('====================================');
-    console.log('componentwillupdate',nextProps);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log('componentwillupdate',nextProps);
+    // console.log('====================================');
   }
   
   render() {
@@ -78,7 +81,7 @@ class SideBar extends Component {
     
     // let listItems=null
     console.log('====================================');
-    console.log('tis state');
+    console.log('render() sidebar this.state');
     console.log(this.state)
     console.log('====================================');
 

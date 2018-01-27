@@ -13,7 +13,8 @@ class Landing extends React.Component {
         super(props);
 
         this.state = {
-            showform: false
+            showform: false,
+            authentication:false
         };
 
         this.doSome = this
@@ -26,12 +27,19 @@ class Landing extends React.Component {
     }
     doSome() {
         this.setState({showform: true})
-        console.log("we are live")
+        // console.log("we are live")
     }
     changesignup() {
         this.setState({showform: false})
     }
     render() {
+        console.log(this.props.authen.isAuthenticated)
+        if(this.props.authen.isAuthenticated===true){
+            
+            this.context.router.history.push('/dashboard')
+        }
+        // console.log("authentication"+this.state.authentication)
+    
         const togg = this.state.showform;
         const {userSignupRequest, addFlashMessage} = this.props
         let form = <LoginPage/>
@@ -93,10 +101,35 @@ class Landing extends React.Component {
         )
     }
 }
+const mapStateToProp = state => {
+    // console.log(state.auth)
+    // this.state.authentication = state.auth
+    // this.setState({authentication: state.auth})
+   
+    return {
+        authen: state.auth
+    }
+  }
 
 Landing.propTypes = {
     userSignupRequest: PropTypes.func.isRequired,
-    addFlashMessage: PropTypes.func.isRequired
+    addFlashMessage: PropTypes.func.isRequired,
+    Properties: PropTypes.array,
+    authentication: PropTypes.array
+}
+Landing.contextTypes = {
+    router: PropTypes.object.isRequired
 }
 
-export default connect(null, {userSignupRequest, addFlashMessage})(Landing)
+export default connect(mapStateToProp, {userSignupRequest, addFlashMessage})(Landing)
+
+// const mapStateToProp = state => {
+//     var x = state.homeData.data
+//     // console.log(x)
+//     return {Properties: state.homeData}
+//   }
+//   Content.propTypes = {
+//     Properties: PropTypes.array
+//   }
+//   export default connect(mapStateToProp)(Content)
+  

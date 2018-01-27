@@ -26,7 +26,7 @@ if(localStorage.jwtToken){
   setAuthorizationToken(localStorage.jwtToken)
   console.log('setting authrorization header')
   StoreInstance.dispatch(setCurrentUser(localStorage.jwtToken))
-  StoreInstance.dispatch(loadHome())
+  // StoreInstance.dispatch(loadHome())
 }
 
 ReactDOM.render(

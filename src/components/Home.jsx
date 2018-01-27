@@ -15,10 +15,13 @@ class Home extends Component {
     super(props)
 
   }
+  componentWillMount(){
+    this.props.loadHome()
+  }
 
   render() {
     // loadPayments()
-    loadHome()
+    // loadHome()
     let renderedContent = null
 
     if (this.props.overallProperty.propertyContent){
@@ -39,6 +42,10 @@ class Home extends Component {
 }
 
 const mapStateToProp = state => {
+  // console.log('====================================');
+  // console.log("maptostate",state);
+  // console.log('====================================');
+
   return {
     overallProperty: state.overallProperty.data
   }
@@ -46,4 +53,4 @@ const mapStateToProp = state => {
 Home.propTypes = {
   overallProperty: PropTypes.array
 }
-export default connect(mapStateToProp,{overallProperties})(Home);
+export default connect(mapStateToProp,{overallProperties,loadHome})(Home);

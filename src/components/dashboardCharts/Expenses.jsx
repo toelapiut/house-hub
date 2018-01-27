@@ -25,7 +25,7 @@ export default class Expenses extends React.Component {
         // console.log(homeData)
         return(
             <PieChart width={800} height={400}>
-                <Pie isAnimationActive={false} data={homeData} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
+                <Pie isAnimationActive={true} data={homeData} cx={200} cy={200} outerRadius={80} fill="#8884d8" label/>
                 <Tooltip/>
             </PieChart>
         )
