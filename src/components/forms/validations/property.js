@@ -4,8 +4,8 @@ import validator from 'validator'
 export default function propertyValidation(data) {
     let errors = {}
 
-    if(validator.isEmpty(data.propertyName)){
-        errors.propertyName = 'This field is required'
+    if(validator.isEmpty(data.name)){
+        errors.name = 'This field is required'
         console.log('username blank');
     }
     if(validator.isEmpty(data.description)){

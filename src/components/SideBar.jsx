@@ -6,15 +6,18 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import { overallProperties,eachProperty } from '../actions/propertyActions.js'
+import {loadHome} from '../actions/dashboardActions'
 
 class SideBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      propertyContent: false
+      propertyContent: false,
+      data:[]
     }
     this.changeContent = this.changeContent.bind(this)
     this.resumeContent = this.resumeContent.bind(this)
+    let listItems = null
   }
   changeContent(qwerty){
     // console.log(qwerty)
@@ -26,41 +29,78 @@ class SideBar extends Component {
     this.setState({propertyContent:false})
     this.props.overallProperties(this.state)
   }
+
+  componentWillMount(){
+    // this.props.loadHome()
+    // this.setState({data:this.props.Properties})
+    // this.props.overallProperties(this.state)
+    // let listItems=this.state.data.map((property) =>
+    
+    //       <li>
+    //       <a  onClick={this.changeContent.bind(null,property.id)}>
+    //         <i className="fa fa-th"></i>
+    //         <span>{property.name}</span>
+    //         <span className="pull-right-container">
+    //           <small className="label pull-right bg-green">new</small>
+    //         </span>
+    //       </a>
+    //       </li>
+    //     )
+  console.log('====================================');
+  console.log('componentwillmount functiont',this.props);
+  console.log('====================================');
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({data:nextProps.Properties.data})
+    console.log('====================================');
+    console.log("component will reeiveprops",this.state);
+    console.log('====================================');
+    
+  }
+
+  shouldComponentUpdate(nextProps,nextState){
+    console.log('====================================');
+    console.log('should component update',nextProps);
+    console.log('====================================');
+    return true
+  }
+
+  componentWillUpdate(nextProps){
+    console.log('====================================');
+    console.log('componentwillupdate',nextProps);
+    console.log('====================================');
+  }
   
   render() {
     let house_data = this.props.Properties.data
-    this.props.overallProperties(this.state)
-    const property_list = this.props.Properties
-    const listItems = property_list.data.map((property) =>
-
-      <li>
-      <a  onClick={this.changeContent.bind(null,property.id)}>
-        <i className="fa fa-th"></i>
-        <span>{property.name}</span>
-        <span className="pull-right-container">
-          <small className="label pull-right bg-green">new</small>
-        </span>
-      </a>
-      </li>
-    )
-    // console.log(listItems.length)
     
+    // let listItems=null
+    console.log('====================================');
+    console.log('tis state');
+    console.log(this.state)
+    console.log('====================================');
 
+    
+    // const property_list = this.props.Properties
+    
+    // let listItems = this.state.data.map((property) =>
+    
+    //       <li>
+    //       <a  onClick={this.changeContent.bind(null,property.id)}>
+    //         <i className="fa fa-th"></i>
+    //         <span>{property.name}</span>
+    //         <span className="pull-right-container">
+    //           <small className="label pull-right bg-green">new</small>
+    //         </span>
+    //       </a>
+    //       </li>
+    //     )
     
     return (<aside className="main-sidebar" style={{position:"fixed"}}>
       <section className="sidebar">
         <div className="user-panel">
-          {/* <div className="pull-left image">
-                            <img src="img/user2-160x160.jpg" className="img-circle" alt="User Image"/>
-                        </div> */
-          }
-          {/* <div className="pull-left info">
-                            <p>Apiut Toel</p>
-                            <a href="#">
-                                <i className="fa fa-circle text-success"></i>
-                                Online</a>
-                        </div> */
-          }
         </div>
         <form action="#" method="get" className="sidebar-form">
           <div className="input-group">
@@ -82,72 +122,23 @@ class SideBar extends Component {
                 <span className="label label-primary pull-right">4</span>
               </span>
             </a>
-            {/* <ul className="treeview-menu">
-              <li>
-                <a href="/">
-                  <i className="fa fa-circle-o"></i>
-                  Top Navigation</a>
-              </li>
-              <li>
-                <a href="/">
-                  <i className="fa fa-circle-o"></i>
-                  Boxed</a>
-              </li>
-              <li>
-                <a href="#">
-                  <i className="fa fa-circle-o"></i>
-                  Fixed</a>
-              </li>
-              <li>
-                <a href="/">
-                  <i className="fa fa-circle-o"></i>
-                  Collapsed Sidebar</a>
-              </li>
-            </ul> */}
           </li>
-
-          {/* <li>
-            <a  onClick={this.changeContent.bind(null,'aszdfsdfsdf')}>
+          {/* {listItems} */}
+          {/* this.setState({data:this.props.Properties.property_list}) */}
+          {this.state.data.map((property) =>
+            <li>
+            <a  onClick={this.changeContent.bind(null,property.id)}>
               <i className="fa fa-th"></i>
-              <span>Properties</span>
+              <span>{property.name}</span>
               <span className="pull-right-container">
                 <small className="label pull-right bg-green">new</small>
               </span>
             </a>
-          </li> */}
-          {listItems}
+            </li>
+          )}
+    
 
           <li className="treeview">
-            {/* <a href="#">
-              <i className="fa fa-table "></i>
-              <span>Tenants</span>
-              <span className="pull-right-container">
-                <i className="fa fa-angle-left pull-right"></i>
-              </span>
-            </a> */}
-            {/* <ul className="treeview-menu">
-                                <li>
-                                    <a href="pages/charts/chartjs.html">
-                                        <i className="fa fa-circle-o "></i>
-                                        ChartJS</a>
-                                </li>
-                                <li>
-                                    <a href="pages/charts/morris.html">
-                                        <i className="fa fa-circle-o"></i>
-                                        Morris</a>
-                                </li>
-                                <li>
-                                    <a href="pages/charts/flot.html">
-                                        <i className="fa fa-circle-o"></i>
-                                        Flot</a>
-                                </li>
-                                <li>
-                                    <a href="pages/charts/inline.html">
-                                        <i className="fa fa-circle-o"></i>
-                                        Inline charts</a>
-                                </li>
-                            </ul> */
-            }
           </li>
           <li>
             <ul className="treeview-menu">
@@ -163,42 +154,23 @@ class SideBar extends Component {
               </li>
             </ul>
           </li>
-          {/* <li>
-            <a href="/">
-              <i className="fa fa-calendar"></i>
-              <span>Calendar</span>
-              <span className="pull-right-container">
-                <small className="label pull-right bg-red">3</small>
-                <small className="label pull-right bg-blue">17</small>
-              </span>
-            </a>
-          </li> */}
-          {/* <li>
-            <a href="/">
-              <i className="fa fa-envelope "></i>
-              <span>Mailbox</span>
-              <span className="pull-right-container">
-                <small className="label pull-right bg-yellow">12</small>
-                <small className="label pull-right bg-green">16</small>
-                <small className="label pull-right bg-red">5</small>
-              </span>
-            </a>
-          </li> */}
         </ul>
       </section>
     </aside>)
   }
 }
 const mapStateToProp = state => {
-  var x = state
-  // console.log(x)
+  // var x = state
+    // this.setState({data:state.homeData})
+
   return {
     Properties: state.homeData,
   }
 }
 SideBar.propTypes = {
   Properties: PropTypes.array,
-  overallProperties: PropTypes.func.isRequired
+  overallProperties: PropTypes.func.isRequired,
+  loadHome:PropTypes.func.isRequired
 
 }
-export default connect(mapStateToProp,{overallProperties})(SideBar)
+export default connect(mapStateToProp,{overallProperties,loadHome})(SideBar)

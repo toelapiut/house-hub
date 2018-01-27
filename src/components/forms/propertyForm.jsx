@@ -8,13 +8,14 @@ class PropertyForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            propertyName:'',
+            name:'',
             description:'',
             house_count:'',
             gabbage:'',
             security:'',
             cleaning:'',
             tax:'',
+            property_type:1,
             errors:{}
         };
         this.onSubmit = this.onSubmit.bind(this)
@@ -35,9 +36,8 @@ class PropertyForm extends React.Component {
         e.preventDefault()
         if (this.isValid()){
             this.setState({errors:{},isLoading:true})
-            this.props.addProperty(this.state).then(
-                (res)=> this.context.router.history.push('/dashboard'),
-            )
+            this.props.addProperty(this.state)
+
         }
       }
       onChange(e){
@@ -56,11 +56,11 @@ class PropertyForm extends React.Component {
                 <label for="house no">Property name</label>
                 
                     <input 
-                    value={this.state.propertyName} 
+                    value={this.state.name} 
                     onChange={this.onChange.bind(this)}
                     type="text" 
-                    name='propertyName'
-                    error={errors.propertyName}
+                    name='name'
+                    error={errors.name}
                     class="form-control" 
                     id="text"/>
                 </div>
