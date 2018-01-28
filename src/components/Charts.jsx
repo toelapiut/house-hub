@@ -3,12 +3,27 @@ import { LineChart, Line,PieChart,Pie } from 'recharts';
 import Month from './dashboardCharts/Months'
 import { Switch, Route } from 'react-router-dom';
 import Expenses from './dashboardCharts/Expenses'
-
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+// import propertyData from 
+import { propertyData } from '../actions/propertyActions.js'
+import HouseForm from "./forms/HouseForm";
 class Charts extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {isHovered: false};
+        super(props);
+        this.state = {
+            isHovered: false,
+            property:[]
+        };
     }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({property:nextProps.property.data})
+        console.log('====================================');
+        console.log("component will reeiveprops",nextProps.property.data);
+        console.log('====================================');
+        
+      }
   
     render() {
 
@@ -31,12 +46,13 @@ class Charts extends React.Component {
         {name:'Court Blinders', value:550000},
         
     ]
+    console.log("property name: from state",this.state)
 
       return (
           <div className="content-wrapper">
             <section className="content-header">
             <div className="container" style={{backgroundColor:"white",height: "100vh"}}>
-            <h1><span>Alabasta Towers</span><span><button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add House</button></span></h1>
+            <h1><span>{this.state.property.name}</span><span><button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add House</button></span></h1>
 
                 {/* <button style={{float:"right"}} type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add House</button> */}
 
@@ -51,25 +67,7 @@ class Charts extends React.Component {
                         <h4 class="modal-title">Add House and Info</h4>
                     </div>
                     <div class="modal-body">
-                    <form action="/action_page.php">
-                        <div class="form-group">
-                            <label for="house no">House No</label>
-                            <input type="text" class="form-control" id="text"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="house no">Full Names</label>
-                            <input type="text" class="form-control" id="text"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="house no">Phone Number</label>
-                            <input type="text" class="form-control" id="text"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">Rent Amount</label>
-                            <input type="text" class="form-control" id="pwd"/>
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
+                        <HouseForm/>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -119,4 +117,22 @@ class Charts extends React.Component {
     }
   }
 
-export default Charts
+// export default Charts
+
+const mapStateToProp = state => {
+    // var x = state
+      // this.setState({data:state.homeData})
+  
+    return {
+      property: state.propertyData,
+    }
+  }
+  Charts.propTypes = {
+    property: PropTypes.array,
+    // overallProperties: PropTypes.func.isRequired,
+    // loadHome:PropTypes.func.isRequired,
+    // propertyData:PropTypes.func
+  
+  }
+  export default connect(mapStateToProp,{ propertyData })( Charts )
+  

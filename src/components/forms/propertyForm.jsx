@@ -53,7 +53,7 @@ class PropertyForm extends React.Component {
         return (
             <form onSubmit={this.onSubmit}>
                 <div class="form-group">
-                <label for="house no">Property name</label>
+                <label >Property name</label>
                 
                     <input 
                     value={this.state.name} 
@@ -65,30 +65,30 @@ class PropertyForm extends React.Component {
                     id="text"/>
                 </div>
                 <div class="form-group">
-                    <label for="house no">Description</label>
+                    <label >Description</label>
                     <input error={errors.description} name='description' value={this.state.description} onChange={this.onChange.bind(this)} type="text" class="form-control" id="text"/>
                 </div>
                 <div class="form-group">
-                    <label for="house no">House Count</label>
+                    <label >House Count</label>
                     <input error={errors.house_count} name='house_count' value={this.state.house_count} onChange={this.onChange.bind(this)} type="number" class="form-control" id="text"/>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Gabbage</label>
+                    <label >Gabbage</label>
                     <input error={errors.gabbage} name='gabbage' value={this.state.gabbage} onChange={this.onChange.bind(this)} type="number" class="form-control" id="pwd"/>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Security</label>
+                    <label >Security</label>
                     <input error={errors.security} name='security' value={this.state.security} onChange={this.onChange.bind(this)} type="number" class="form-control" id="pwd"/>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">TAX</label>
+                    <label >TAX</label>
                     <input error={errors.tax} name='tax' value={this.state.tax} onChange={this.onChange.bind(this)} type="number" class="form-control" id="pwd"/>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">cleaning</label>
+                    <label >cleaning</label>
                     <input error={errors.cleaning} name='cleaning' value={this.state.cleaning} onChange={this.onChange.bind(this)} type="number" class="form-control" id="pwd"/>
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default" data-dismiss="modal">Submit</button>
             </form>
             
         );
