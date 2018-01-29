@@ -12,11 +12,14 @@ import requireAuth from './utils/requireAuth';
 import Error404 from './components/Error404';
 import Landing from './components/Landing'
 import Charts from './components/Charts'
+import Lines from 'react-preloaders/Preloaders/Lines';
 
 class App extends Component {
   render() {
     return (
+      
       <div className="App">
+    
         {/* <FlashMessagesList/> */}
         <FlashMessagesList/>
         <Switch>

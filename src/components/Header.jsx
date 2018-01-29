@@ -35,7 +35,7 @@ class Header extends Component {
                         <ul className="nav navbar-nav">
                             <li className="dropdown messages-menu">
                                 <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                                    <i className="fa fa-envelope-o"></i>
+                                    <i className="fal fa-cog"></i>
                                     <span className="label label-success">4</span>
                                 </a>
                                 <ul className="dropdown-menu">

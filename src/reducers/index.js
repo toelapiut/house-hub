@@ -7,7 +7,7 @@ import homeData from './homeData'
 const rootReducer = combineReducers({
     flashMessages,
     auth,
-    homeData
+    homeData,
 });
 
 export default rootReducer;

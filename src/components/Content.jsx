@@ -1,12 +1,12 @@
 // Content.js
 
 import React, {Component} from 'react';
-import Charts from "./Charts"
-import Expenses from './dashboardCharts/Expenses'
-import HouseCount from './dashboardCharts/HouseCount'
-import Months from './dashboardCharts/Months'
-import SomeTenants from './dashboardCharts/SomeTenants'
-
+import Charts from "./Charts";
+import Expenses from './dashboardCharts/Expenses';
+import HouseCount from './dashboardCharts/HouseCount';
+import Months from './dashboardCharts/Months';
+import SomeTenants from './dashboardCharts/SomeTenants';
+import Property from './forms/Property';
 export default class Content extends Component {
     render(){
         return (
@@ -16,6 +16,7 @@ export default class Content extends Component {
                         <div className="col-md-12">
                             <div className="box">
                                 <div className="box-header with-border">
+                                <Property/>
                                     <h3 className="box-title">Monthly Recap Report</h3>
                                 </div>
                                 <div className="box-body">

@@ -7,10 +7,12 @@ import Content from './Content';
 
 export default() => {
   return (
-    <div>
+  
+  <div>
+   
       <Header/>
       <SideBar/>
       <Content/>
-    </div>
+  </div>
   )
 }
