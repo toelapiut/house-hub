@@ -25,13 +25,23 @@ class Content extends Component {
 
   monthlyMoney(){
     let payment_data = this.props.payments
-    let cash = 0
+    const january = "january"
+    let janCash = 0
     // let {January, February}
+    // console.log('====================================');
+    // console.log("monthlyMoney() payment props",payment_data);
+    // console.log('====================================');
     for(let item of payment_data){
-      cash = item.amount
+      // cash = item.amount
+      let month = item.month
+      if (month.toLowerCase()===january){
+        janCash += parseInt(item.amount)
+      }
+      // janCash = x > 10 ? 'greater than 10'
       // month = item.month
       // name = item.property_id.name
     }
+    return janCash
 
   }
 
@@ -116,7 +126,11 @@ class Content extends Component {
     // this data is being sent as a prop to children components
     const house_data = this.totalHouses()
     const expenses_data = this.totalExpenses()
+    const monthly_data = this.monthlyMoney()
     console.log(this.props.payments)
+    console.log('====================================');
+    console.log("monthly_data return function",monthly_data);
+    console.log('====================================');
     // var income_data= this.totalMoney()
 
     // const tenant_data = this.totalTenants()

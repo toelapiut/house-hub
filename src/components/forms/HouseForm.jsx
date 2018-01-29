@@ -22,7 +22,7 @@ class HouseForm extends React.Component {
       }
 
       componentWillReceiveProps(nextProps){
-        this.setState({house_property:nextProps.house_property})
+        this.setState({house_property:parseInt(nextProps.house_property)})
         console.log('====================================');
         console.log("component will houseform reeiveprops",nextProps.house_property);
         console.log('====================================');
